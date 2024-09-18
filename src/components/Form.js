@@ -1,55 +1,64 @@
 import React, { useState } from "react";
 
 function MyForm() {
-  const [name, setName] = useState("Name");
-  const [text, setText] = useState("");
-  const [check, setCheck] = useState(false);
-  const [selected, setSelect] = useState("Mr");
+  const [formData, setFormData] = useState({
+    name: "Name",
+    text: "",
+    check: false,
+    title: "Mr",
+  });
 
-  const handleCheck = (event) => {
-    setCheck(event.target.checked);
+  const handleChange = (event) => {
+    const fieldName = event.target.name;
+    const value =
+      fieldName === "check" ? event.target.checked : event.target.value;
+    setFormData((prevData) => ({
+      ...prevData,
+      [fieldName]: value,
+    }));
   };
 
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleText = (event) => {
-    setText(event.target.value);
-  };
-
-  const handleSelect = (event) => {
-    setSelect(event.target.value);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formData);
   };
 
   return (
-    <div
-      className="Form"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-        margin: "0 auto",
-        padding: "2rem",
-        boxSizing: "border-box",
-        backgroundColor: "#f9f9f9",
-      }}
-    >
-      <input type="text" value={name} onChange={handleName}></input>
-      <textarea value={text} onChange={handleText}></textarea>
-      <input type="checkbox" checked={check} onChange={handleCheck}></input>
-      <div>
-        <select onChange={handleSelect} value={selected}>
-          <option value="Mr">Mr</option>
-          <option value="Ms">Ms</option>
-          <option value="Mrs">Mrs</option>
-          <option value="Miss">Miss</option>
-        </select>
+    <form onSubmit={handleSubmit}>
+      <div className="Form">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          style={{ marginBottom: "1rem" }}
+        />
+        <textarea
+          value={formData.text}
+          name="text"
+          onChange={handleChange}
+          style={{ marginBottom: "1rem" }}
+        />
+        <label style={{ marginBottom: "1rem" }}>
+          <input
+            type="checkbox"
+            name="check"
+            checked={formData.check}
+            onChange={handleChange}
+          />
+          Check me
+        </label>
+        <div>
+          <select onChange={handleChange} value={formData.title} name="title">
+            <option value="Mr">Mr</option>
+            <option value="Ms">Ms</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
       </div>
-    </div>
+    </form>
   );
 }
 
