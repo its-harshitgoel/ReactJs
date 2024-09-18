@@ -1,8 +1,9 @@
 import "./App.css";
 import React from "react";
-import Header  from "./components/Header";
-import {C} from "./components/Para";
-import Counter from "./components/Counter";
+// import Header  from "./components/Header";
+// import {C} from "./components/Para";
+// import Counter from "./components/Counter";
+import ImageSlider from "./components/ImageSlider";
 
 
 // const Para = () => (
@@ -35,7 +36,7 @@ const add = (a, b) => a + b
 function App() {
   return (
     <div className="App">
-      <Header 
+      {/* <Header 
         name="Harshit" 
         num = {5} 
         myArr = {[1, 2, 3]} 
@@ -46,7 +47,8 @@ function App() {
         myFunc = {add}
       />
       <C />
-      <Counter initialCount = {0}/>
+      <Counter initialCount = {0}/> */}
+      <ImageSlider/>
       
     </div>
   );
