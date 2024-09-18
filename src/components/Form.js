@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 
 function MyForm() {
-  const [formData, setFormData] = useState({
-    name: "Name",
-    text: "",
-    check: false,
-    title: "Mr",
-  });
+  const initialState = {
+    name: "",
+    // text: "",
+    // check: false,
+    // title: "Mr",
+    email: "",
+    password: "",
+    nameError: "",
+    emailError: "",
+    passwordError: "",
+  };
+  const [formData, setFormData] = useState(initialState);
 
   const handleChange = (event) => {
     const fieldName = event.target.name;
@@ -18,22 +24,84 @@ function MyForm() {
     }));
   };
 
+  const validate = () => {
+    let nameError = "";
+    let emailError = "";
+    let passwordError = "";
+
+    if (!formData.name) {
+      nameError = "Name cannot be blank";
+    }
+
+    if (!formData.email.includes("@")) {
+      emailError = "Invalid Email";
+    }
+
+    if (formData.password.length < 8) {
+      passwordError = "Password Length must be 8 characters or more";
+    }
+    if (emailError || nameError || passwordError) {
+      setFormData({ emailError, nameError, passwordError });
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    const Valid = validate();
     console.log(formData);
+    if (Valid) {
+      setFormData(initialState);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="Form">
+      <div
+        className="Form"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "30%",
+          justifyContent: "center",
+          margin: "1%",
+          backgroundColor: "yellow",
+          padding: "5%",
+        }}
+      >
         <input
           type="text"
           name="name"
+          placeholder="Name"
           value={formData.name}
           onChange={handleChange}
-          style={{ marginBottom: "1rem" }}
         />
-        <textarea
+        <div style={{ color: "red", fontSize: "12px" }}>
+          {formData.nameError}
+        </div>
+        <input
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <div style={{ color: "red", fontSize: "12px" }}>
+          {formData.emailError}
+        </div>
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <div style={{ color: "red", fontSize: "12px" }}>
+          {formData.passwordError}
+        </div>
+
+        {/* <textarea
           value={formData.text}
           name="text"
           onChange={handleChange}
@@ -55,7 +123,7 @@ function MyForm() {
             <option value="Mrs">Mrs</option>
             <option value="Miss">Miss</option>
           </select>
-        </div>
+        </div> */}
         <button type="submit">Submit</button>
       </div>
     </form>
