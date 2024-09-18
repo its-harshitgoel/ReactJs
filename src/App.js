@@ -1,9 +1,10 @@
 import "./App.css";
 import React, { useState } from "react";
+import MyForm from "./components/Form";
 // import Header  from "./components/Header";
 // import {C} from "./components/Para";
-import ImageSlider from "./components/ImageSlider";
-import Counter from "./components/Counter";
+// import ImageSlider from "./components/ImageSlider";
+// import Counter from "./components/Counter";
 
 // const Para = () => (
 //   <p>
@@ -29,7 +30,7 @@ import Counter from "./components/Counter";
 //   );
 // }
 
-const add = (a, b) => a + b;
+// const add = (a, b) => a + b;
 
 function App() {
   // const [isVisible, setVisible] = useState(true);
@@ -102,31 +103,36 @@ function App() {
   //   </div>
   // );
 
-  const [activeComponent, setActiveComponent] = useState("Counter");
+  // const [activeComponent, setActiveComponent] = useState("Counter");
 
+  // return (
+  //   <div className="App">
+  //     <div
+  //       style={{ display: activeComponent === "Counter" ? "block" : "none" }}
+  //     >
+  //       <Counter initialCount={0} />
+  //     </div>
+  //     <div
+  //       style={{
+  //         display: activeComponent === "ImageSlider" ? "block" : "none",
+  //       }}
+  //     >
+  //       <ImageSlider />
+  //     </div>
+  //     <button
+  //       onClick={() =>
+  //         setActiveComponent(
+  //           activeComponent === "Counter" ? "ImageSlider" : "Counter"
+  //         )
+  //       }
+  //     >
+  //       Switch to {activeComponent === "Counter" ? "ImageSlider" : "Counter"}
+  //     </button>
+  //   </div>
+  // );
   return (
     <div className="App">
-      <div
-        style={{ display: activeComponent === "Counter" ? "block" : "none" }}
-      >
-        <Counter initialCount={0} />
-      </div>
-      <div
-        style={{
-          display: activeComponent === "ImageSlider" ? "block" : "none",
-        }}
-      >
-        <ImageSlider />
-      </div>
-      <button
-        onClick={() =>
-          setActiveComponent(
-            activeComponent === "Counter" ? "ImageSlider" : "Counter"
-          )
-        }
-      >
-        Switch to {activeComponent === "Counter" ? "ImageSlider" : "Counter"}
-      </button>
+      <MyForm />
     </div>
   );
 }
