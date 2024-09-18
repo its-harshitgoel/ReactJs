@@ -1,23 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Header  from "./components/Header";
+import {C} from "./components/Para";
+import Counter from "./components/Counter";
+
+
+// const Para = () => (
+//   <p>
+//     Hello<code>src/App.js</code> and save to reload.
+//   </p>
+// );
+
+// class Para extends React.Component {
+//   render() {
+//     return (
+//     <p>
+//       Hello<code>src/App.js</code> and save to reload.
+//     </p>
+//     );
+//   }
+// }
+
+// function Para() {
+//   return (
+//     <p>
+//       Hello<code>src/App.js</code> and save to reload.
+//     </p>
+//   );
+// }
+
+
+const add = (a, b) => a + b
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header 
+        name="Harshit" 
+        num = {5} 
+        myArr = {[1, 2, 3]} 
+        myObj={{
+          a: 5,
+          b: 6
+        }} 
+        myFunc = {add}
+      />
+      <C />
+      <Counter initialCount = {0}/>
+      
     </div>
   );
 }
