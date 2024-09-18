@@ -1,10 +1,9 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 // import Header  from "./components/Header";
 // import {C} from "./components/Para";
-// import Counter from "./components/Counter";
 import ImageSlider from "./components/ImageSlider";
-
+import Counter from "./components/Counter";
 
 // const Para = () => (
 //   <p>
@@ -30,10 +29,25 @@ import ImageSlider from "./components/ImageSlider";
 //   );
 // }
 
-
-const add = (a, b) => a + b
+const add = (a, b) => a + b;
 
 function App() {
+  const [isVisible, setVisible] = useState(true);
+
+  const handleVisibility = () => {
+    setVisible(!isVisible);
+  };
+
+  const ButtonText = isVisible ? "Hide" : "Show";
+  const slider = isVisible ? (
+    <ImageSlider />
+  ) : (
+    <div>
+      {" "}
+      <Counter initialCount={0} />{" "}
+    </div>
+  );
+
   return (
     <div className="App">
       {/* <Header 
@@ -48,8 +62,8 @@ function App() {
       />
       <C />
       <Counter initialCount = {0}/> */}
-      <ImageSlider/>
-      
+      {slider}
+      <button onClick={handleVisibility}>{ButtonText}</button>
     </div>
   );
 }
