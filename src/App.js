@@ -32,40 +32,69 @@ import Counter from "./components/Counter";
 const add = (a, b) => a + b;
 
 function App() {
-  const [isVisible, setVisible] = useState(true);
+  // const [isVisible, setVisible] = useState(true);
+  const [componentToShow, changeComponentTo] = useState("ImageSlider");
 
-  const handleVisibility = () => {
-    setVisible(!isVisible);
-  };
+  // const handleVisibility = () => {
+  //   setVisible(!isVisible);
+  // };
 
-  const ButtonText = isVisible ? "Hide" : "Show";
-  const slider = isVisible ? (
-    <ImageSlider />
-  ) : (
-    <div>
-      {" "}
-      <Counter initialCount={0} />{" "}
-    </div>
-  );
+  // const ButtonText = isVisible ? "Hide" : "Show";
+  // const slider = isVisible ? (
+  //   <ImageSlider />
+  // ) : (
+  //   <div>
+  //     {" "}
+  //     <Counter initialCount={0} />
+  //   </div>
+  // );
 
-  return (
-    <div className="App">
-      {/* <Header 
-        name="Harshit" 
-        num = {5} 
-        myArr = {[1, 2, 3]} 
-        myObj={{
-          a: 5,
-          b: 6
-        }} 
-        myFunc = {add}
-      />
-      <C />
-      <Counter initialCount = {0}/> */}
-      {slider}
-      <button onClick={handleVisibility}>{ButtonText}</button>
-    </div>
-  );
+  if (componentToShow === "ImageSlider") {
+    return (
+      <div className="App">
+        <ImageSlider />
+        <button
+          onClick={() => {
+            changeComponentTo("Counter");
+          }}
+        >
+          Counter
+        </button>
+      </div>
+    );
+  } else if (componentToShow === "Counter") {
+    return (
+      <div className="App">
+        <Counter initialCount={0}/>
+        <button
+          onClick={() => {
+            changeComponentTo("ImageSlider");
+          }}
+        >
+          ImageSlider
+        </button>
+      </div>
+    );
+  }
+
+  // return (
+  //   <div className="App">
+  //     {/* <Header 
+  //       name="Harshit" 
+  //       num = {5} 
+  //       myArr = {[1, 2, 3]} 
+  //       myObj={{
+  //         a: 5,
+  //         b: 6
+  //       }} 
+  //       myFunc = {add}
+  //     />
+  //     <C />
+  //     <Counter initialCount = {0}/> */}
+  //     {slider}
+  //     <button onClick={handleVisibility}>{ButtonText}</button>
+  //   </div>
+  // );
 }
 
 export default App;
